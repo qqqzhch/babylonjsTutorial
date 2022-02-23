@@ -5,7 +5,7 @@
 import { ref, onMounted } from "@vue/runtime-core";
 import { createScene } from "./MyFirstScene";
 
-var myScene;
+// var myScene;
 export default {
   name: "BabylonScene",
   props: {
@@ -44,7 +44,7 @@ export default {
         bjsCanvas.value.width = document.documentElement.clientWidth;
         bjsCanvas.value.height = document.documentElement.clientHeight;
         
-      myScene =  createScene(bjsCanvas.value);
+       createScene(bjsCanvas.value);
       }
     });
 
@@ -65,7 +65,7 @@ export default {
         bjsCanvas.style.height = document.documentElement.clientHeight+"px";
         bjsCanvas.width = document.documentElement.clientWidth;
         bjsCanvas.height = document.documentElement.clientHeight;
-        myScene.getEngine().resize();
+        // myScene.getEngine().resize();
 
       }
       
