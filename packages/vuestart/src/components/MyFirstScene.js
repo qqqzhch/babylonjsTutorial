@@ -28,27 +28,26 @@ const createScene = async (canvas) => {
   //   image.stretch = Image.STRETCH_NONE;
   //   advancedTexture.addControl(image);  
 
-    const snowBall = await SceneLoader.ImportMeshAsync("",`/`, "index.gltf", scene);
+    const snowBall = await SceneLoader.ImportMeshAsync("",`/`, "index.glb", scene);
      console.log('async',snowBall);
-     snowBall.transformNodes.forEach((n)=>{
-        console.log('transformNodes',n.name);
-
-    });
-    const transformNodes = snowBall.transformNodes;
+     
+    // const transformNodes = snowBall.transformNodes;
     
-
      const snowBallParent = snowBall.meshes[0];
-     const newRoot = snowBall.transformNodes[0];
-     newRoot.setParent(null);
+     const rootson = snowBallParent.getChildMeshes(true).slice(0);
+     rootson.forEach((item)=>{
+        item.setParent(null);
+     })
+     
      
   
      
      snowBallParent.dispose();
-     transformNodes.forEach((one)=>{
-         if(one.name=="art_frame"){
-            one.scaling.x=512/100;
-            one.scaling.y=316/100;
-            one.scaling.z=5;
+     snowBall.meshes.forEach((one)=>{
+         if(one.name=="art_frame1"){
+            one.scaling.x=512/50;
+            one.scaling.y=316/50;
+            one.scaling.z=1;
            const mysons = one.getChildMeshes();
            mysons.forEach((cube)=>{
                if(cube.name=="art"){
